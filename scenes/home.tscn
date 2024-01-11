@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://0nxq7q748tc0"]
+
+[ext_resource type="PackedScene" uid="uid://84ot3l0gobbr" path="res://templates/chocolate.tscn" id="1_kedgu"]
+[ext_resource type="PackedScene" uid="uid://chs8chdi5ghq" path="res://templates/telescreen.tscn" id="2_3efa1"]
+[ext_resource type="PackedScene" uid="uid://b7vvkrwnkx83e" path="res://templates/player.tscn" id="3_foiyb"]
+
+[node name="Home" type="Node2D"]
+
+[node name="Telescreen" parent="." instance=ExtResource("2_3efa1")]
+position = Vector2(27.7726, -8.64812)
+
+[node name="Chocolate" parent="." instance=ExtResource("1_kedgu")]
+position = Vector2(-492, 33)
+
+[node name="Player" parent="." instance=ExtResource("3_foiyb")]
+position = Vector2(22, 295)

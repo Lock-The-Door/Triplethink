@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://pn1eeuxi4h43"]
+
+[ext_resource type="Texture2D" uid="uid://qanva4n4g13" path="res://assets/telescreen/big_brother/face1.png" id="1_1gfbx"]
+[ext_resource type="Texture2D" uid="uid://bei6yf8uny8o4" path="res://assets/telescreen/big_brother/face.png" id="2_2gywv"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_quuiy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_1gfbx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_2gywv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="BigBrother" type="SubViewport"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_quuiy")
+frame_progress = 0.889336
+
+[node name="Eyes" type="Sprite2D" parent="."]

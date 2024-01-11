@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://chs8chdi5ghq"]
+
+[ext_resource type="PackedScene" uid="uid://pn1eeuxi4h43" path="res://scenes/telescreen/big_brother.tscn" id="1_28ek2"]
+[ext_resource type="Texture2D" uid="uid://wnq5wkllmx45" path="res://assets/telescreen.svg" id="1_kx2dl"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ovh0p"]
+viewport_path = NodePath("Viewports/BigBrother")
+
+[node name="Telescreen" type="Node2D"]
+
+[node name="Frame" type="Sprite2D" parent="."]
+texture = ExtResource("1_kx2dl")
+
+[node name="Content" type="Sprite2D" parent="Frame"]
+show_behind_parent = true
+scale = Vector2(0.25, 0.25)
+texture = SubResource("ViewportTexture_ovh0p")
+region_enabled = true
+region_rect = Rect2(0, 0, 1920, 1080)
+
+[node name="Viewports" type="Node" parent="."]
+
+[node name="BigBrother" parent="Viewports" instance=ExtResource("1_28ek2")]

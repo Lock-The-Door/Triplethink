@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://84ot3l0gobbr"]
+
+[ext_resource type="Script" path="res://scripts/interactables/chocolate.gd" id="1_qvf4r"]
+[ext_resource type="Texture2D" uid="uid://cb5pqxyjq8bi1" path="res://assets/server-icon.png" id="2_meiwx"]
+
+[node name="Chocolate" type="Node2D"]
+script = ExtResource("1_qvf4r")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_meiwx")
