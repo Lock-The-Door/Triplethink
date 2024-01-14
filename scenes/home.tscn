@@ -1,16 +1,55 @@
-[gd_scene load_steps=4 format=3 uid="uid://0nxq7q748tc0"]
+[gd_scene load_steps=11 format=3 uid="uid://0nxq7q748tc0"]
 
 [ext_resource type="PackedScene" uid="uid://84ot3l0gobbr" path="res://templates/chocolate.tscn" id="1_kedgu"]
 [ext_resource type="PackedScene" uid="uid://chs8chdi5ghq" path="res://templates/telescreen.tscn" id="2_3efa1"]
+[ext_resource type="PackedScene" uid="uid://nlvwu5wpcc5o" path="res://templates/door.tscn" id="3_2wud3"]
 [ext_resource type="PackedScene" uid="uid://b7vvkrwnkx83e" path="res://templates/player.tscn" id="3_foiyb"]
+[ext_resource type="Script" path="res://scripts/interactables/interactable.gd" id="3_ncwiv"]
+[ext_resource type="Script" path="res://scripts/color_texture.gd" id="4_bg76d"]
+[ext_resource type="Material" uid="uid://dfdl63cugpru1" path="res://resources/highlight.material" id="4_uke7e"]
+[ext_resource type="Texture2D" uid="uid://cbh4b0xnqhd01" path="res://assets/memory hole.svg" id="5_2haek"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_11uaj"]
+size = Vector2(200, 1080)
+
+[sub_resource type="ImageTexture" id="ImageTexture_hn760"]
 
 [node name="Home" type="Node2D"]
 
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Memory Hole" type="Node2D" parent="."]
+material = ExtResource("4_uke7e")
+position = Vector2(700, 0)
+script = ExtResource("3_ncwiv")
+
+[node name="Sprite2D" type="Sprite2D" parent="Memory Hole"]
+use_parent_material = true
+texture = ExtResource("5_2haek")
+
+[node name="Area2D" type="Area2D" parent="Memory Hole"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Memory Hole/Area2D"]
+shape = SubResource("RectangleShape2D_11uaj")
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="Floor" type="Sprite2D" parent="Background"]
+position = Vector2(0, 580)
+scale = Vector2(1920, 500)
+texture = SubResource("ImageTexture_hn760")
+script = ExtResource("4_bg76d")
+color = Color(0.384314, 0.384314, 0.384314, 1)
+
 [node name="Telescreen" parent="." instance=ExtResource("2_3efa1")]
-position = Vector2(27.7726, -8.64812)
+position = Vector2(-200, 0)
 
 [node name="Chocolate" parent="." instance=ExtResource("1_kedgu")]
-position = Vector2(-492, 33)
+position = Vector2(-200, -250)
+
+[node name="Door" parent="." instance=ExtResource("3_2wud3")]
+position = Vector2(-660, 75)
 
 [node name="Player" parent="." instance=ExtResource("3_foiyb")]
-position = Vector2(22, 295)
+
+[node name="Foreground" type="Node2D" parent="."]

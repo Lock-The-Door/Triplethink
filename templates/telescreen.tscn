@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://chs8chdi5ghq"]
 
-[ext_resource type="PackedScene" uid="uid://pn1eeuxi4h43" path="res://scenes/telescreen/big_brother.tscn" id="1_28ek2"]
+[ext_resource type="PackedScene" uid="uid://cr544a28wn7b5" path="res://scenes/telescreen/big_brother.tscn" id="1_28ek2"]
 [ext_resource type="Texture2D" uid="uid://wnq5wkllmx45" path="res://assets/telescreen.svg" id="1_kx2dl"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_ovh0p"]
-viewport_path = NodePath("Viewports/BigBrother")
+[sub_resource type="ViewportTexture" id="ViewportTexture_v2uc4"]
+viewport_path = NodePath("Viewports/Big Brother")
 
 [node name="Telescreen" type="Node2D"]
 
@@ -14,10 +14,16 @@ texture = ExtResource("1_kx2dl")
 [node name="Content" type="Sprite2D" parent="Frame"]
 show_behind_parent = true
 scale = Vector2(0.25, 0.25)
-texture = SubResource("ViewportTexture_ovh0p")
-region_enabled = true
-region_rect = Rect2(0, 0, 1920, 1080)
+texture = SubResource("ViewportTexture_v2uc4")
+region_rect = Rect2(-960, -540, 1920, 1080)
 
 [node name="Viewports" type="Node" parent="."]
 
-[node name="BigBrother" parent="Viewports" instance=ExtResource("1_28ek2")]
+[node name="Big Brother" type="SubViewport" parent="Viewports"]
+disable_3d = true
+transparent_bg = true
+size = Vector2i(1920, 1080)
+
+[node name="Big Brother" parent="Viewports/Big Brother" instance=ExtResource("1_28ek2")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
