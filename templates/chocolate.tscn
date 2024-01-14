@@ -1,11 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://84ot3l0gobbr"]
+[gd_scene load_steps=4 format=3 uid="uid://84ot3l0gobbr"]
 
 [ext_resource type="Material" uid="uid://dfdl63cugpru1" path="res://resources/highlight.material" id="1_imm82"]
 [ext_resource type="Script" path="res://scripts/interactables/chocolate.gd" id="1_qvf4r"]
 [ext_resource type="Texture2D" uid="uid://b2kn3dsxi1438" path="res://assets/chocolate.png" id="3_5isup"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hfc73"]
-size = Vector2(200, 100)
 
 [node name="Chocolate" type="Node2D"]
 material = ExtResource("1_imm82")
@@ -14,8 +11,3 @@ script = ExtResource("1_qvf4r")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 use_parent_material = true
 texture = ExtResource("3_5isup")
-
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("RectangleShape2D_hfc73")

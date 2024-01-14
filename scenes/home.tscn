@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://0nxq7q748tc0"]
+[gd_scene load_steps=10 format=3 uid="uid://0nxq7q748tc0"]
 
 [ext_resource type="PackedScene" uid="uid://84ot3l0gobbr" path="res://templates/chocolate.tscn" id="1_kedgu"]
 [ext_resource type="PackedScene" uid="uid://chs8chdi5ghq" path="res://templates/telescreen.tscn" id="2_3efa1"]
@@ -8,9 +8,6 @@
 [ext_resource type="Script" path="res://scripts/color_texture.gd" id="4_bg76d"]
 [ext_resource type="Material" uid="uid://dfdl63cugpru1" path="res://resources/highlight.material" id="4_uke7e"]
 [ext_resource type="Texture2D" uid="uid://cbh4b0xnqhd01" path="res://assets/memory hole.svg" id="5_2haek"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_11uaj"]
-size = Vector2(200, 1080)
 
 [sub_resource type="ImageTexture" id="ImageTexture_hn760"]
 
@@ -26,11 +23,6 @@ script = ExtResource("3_ncwiv")
 [node name="Sprite2D" type="Sprite2D" parent="Memory Hole"]
 use_parent_material = true
 texture = ExtResource("5_2haek")
-
-[node name="Area2D" type="Area2D" parent="Memory Hole"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Memory Hole/Area2D"]
-shape = SubResource("RectangleShape2D_11uaj")
 
 [node name="Background" type="Node2D" parent="."]
 
