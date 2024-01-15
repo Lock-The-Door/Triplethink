@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://80s1devy0l86"]
+
+[ext_resource type="Script" path="res://scripts/color_texture.gd" id="1_tlk6w"]
+[ext_resource type="Texture2D" uid="uid://cdekd78uvukl7" path="res://assets/door.svg" id="1_vbbk2"]
+[ext_resource type="PackedScene" uid="uid://chs8chdi5ghq" path="res://templates/telescreen.tscn" id="2_4551n"]
+[ext_resource type="PackedScene" uid="uid://b7vvkrwnkx83e" path="res://templates/player.tscn" id="3_gtr6i"]
+[ext_resource type="Script" path="res://scripts/interactables/transition_interactable.gd" id="5_bn1sh"]
+[ext_resource type="Texture2D" uid="uid://dn545xek3cdnv" path="res://assets/arrow.svg" id="6_s41pm"]
+[ext_resource type="Script" path="res://scripts/interactables/interactable.gd" id="7_f3cth"]
+
+[node name="Outside" type="Node2D"]
+
+[node name="Sky" type="Sprite2D" parent="."]
+scale = Vector2(1920, 1080)
+script = ExtResource("1_tlk6w")
+color = Color(0, 0.560784, 0.74902, 1)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Door" type="Sprite2D" parent="."]
+position = Vector2(0, 250)
+texture = ExtResource("1_vbbk2")
+
+[node name="Telescreen" parent="." instance=ExtResource("2_4551n")]
+position = Vector2(0, -200)
+
+[node name="Player" parent="." instance=ExtResource("3_gtr6i")]
+position = Vector2(0, 311.152)
+
+[node name="Right Arrow" type="Node2D" parent="."]
+position = Vector2(700, 0)
+script = ExtResource("5_bn1sh")
+target_scene = "ministry_of_truth"
+
+[node name="Sprite2D" type="Sprite2D" parent="Right Arrow"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_s41pm")
+
+[node name="Tooltip" type="Label" parent="Right Arrow"]
+offset_right = 40.0
+offset_bottom = 20.0
+text = "Go Right"
+
+[node name="Left Arrow" type="Node2D" parent="."]
+position = Vector2(-700, 0)
+script = ExtResource("7_f3cth")
+
+[node name="Sprite2D" type="Sprite2D" parent="Left Arrow"]
+rotation = 3.14159
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_s41pm")
+
+[node name="Tooltip" type="Label" parent="Left Arrow"]
+offset_right = 75.0
+offset_bottom = 20.0
+text = "Go Left"
