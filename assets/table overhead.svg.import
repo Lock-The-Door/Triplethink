@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://wnq5wkllmx45"
-path="res://.godot/imported/telescreen.svg-abc33d58416120c16ea4c47aeabc2cef.ctex"
+uid="uid://ck3hls1vx4ehx"
+path="res://.godot/imported/table overhead.svg-8b2641686a0c1a4c4858e6ba5bed9dd9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/telescreen.svg"
-dest_files=["res://.godot/imported/telescreen.svg-abc33d58416120c16ea4c47aeabc2cef.ctex"]
+source_file="res://assets/table overhead.svg"
+dest_files=["res://.godot/imported/table overhead.svg-8b2641686a0c1a4c4858e6ba5bed9dd9.ctex"]
 
 [params]
 

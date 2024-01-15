@@ -1,3 +1,4 @@
+class_name ColorSprite2D
 extends Sprite2D
 
 @export var color: Color = Color(1, 1, 1, 1)

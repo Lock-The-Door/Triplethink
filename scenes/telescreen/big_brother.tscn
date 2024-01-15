@@ -1,10 +1,21 @@
-[gd_scene load_steps=7 format=3 uid="uid://cr544a28wn7b5"]
+[gd_scene load_steps=10 format=3 uid="uid://cr544a28wn7b5"]
 
 [ext_resource type="Texture2D" uid="uid://qanva4n4g13" path="res://assets/telescreen/big_brother/face1.png" id="1_1gfbx"]
+[ext_resource type="Script" path="res://scripts/noise_animation.gd" id="1_55v77"]
 [ext_resource type="Texture2D" uid="uid://bei6yf8uny8o4" path="res://assets/telescreen/big_brother/face.png" id="2_2gywv"]
 [ext_resource type="Texture2D" uid="uid://bo5gphb8lylfl" path="res://assets/telescreen/big_brother/Eye Socket.svg" id="3_6562g"]
 [ext_resource type="Texture2D" uid="uid://cd3dhbokra583" path="res://assets/telescreen/Iris.svg" id="4_18s4p"]
 [ext_resource type="Script" path="res://scripts/telescreen/eye.gd" id="4_wo0b7"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ms18c"]
+noise_type = 0
+seed = 100
+frequency = 0.05
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_vndgv"]
+width = 1920
+height = 1080
+noise = SubResource("FastNoiseLite_ms18c")
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_quuiy"]
 animations = [{
@@ -24,6 +35,12 @@ animations = [{
 scale = Vector2(2, 2)
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Noise Background" type="Sprite2D" parent="."]
+position = Vector2(0.5, 0)
+texture = SubResource("NoiseTexture2D_vndgv")
+script = ExtResource("1_55v77")
+texture_size = Vector2i(1080, 1920)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_quuiy")

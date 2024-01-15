@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://0nxq7q748tc0"]
+[gd_scene load_steps=13 format=3 uid="uid://0nxq7q748tc0"]
 
 [ext_resource type="PackedScene" uid="uid://84ot3l0gobbr" path="res://templates/chocolate.tscn" id="1_kedgu"]
 [ext_resource type="PackedScene" uid="uid://chs8chdi5ghq" path="res://templates/telescreen.tscn" id="2_3efa1"]
@@ -8,6 +8,16 @@
 [ext_resource type="Script" path="res://scripts/color_texture.gd" id="4_bg76d"]
 [ext_resource type="Material" uid="uid://dfdl63cugpru1" path="res://resources/highlight.material" id="4_uke7e"]
 [ext_resource type="Texture2D" uid="uid://cbh4b0xnqhd01" path="res://assets/memory hole.svg" id="5_2haek"]
+[ext_resource type="LabelSettings" uid="uid://ds8x5mp1hu83a" path="res://resources/tooltip_label_settings.tres" id="5_byrgx"]
+[ext_resource type="Texture2D" uid="uid://cqt2kh3as3fbc" path="res://assets/table.svg" id="9_eqtf4"]
+
+[sub_resource type="GDScript" id="GDScript_pbdig"]
+resource_name = "Background"
+script/source = "extends ColorSprite2D
+
+func _process(delta: float) -> void:
+	scale = get_window().size
+"
 
 [sub_resource type="ImageTexture" id="ImageTexture_hn760"]
 
@@ -15,16 +25,16 @@
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="Memory Hole" type="Node2D" parent="."]
-material = ExtResource("4_uke7e")
-position = Vector2(700, 0)
-script = ExtResource("3_ncwiv")
-
-[node name="Sprite2D" type="Sprite2D" parent="Memory Hole"]
-use_parent_material = true
-texture = ExtResource("5_2haek")
-
 [node name="Background" type="Node2D" parent="."]
+
+[node name="Outside" type="Sprite2D" parent="Background"]
+script = SubResource("GDScript_pbdig")
+color = Color(0.317647, 0.643137, 1, 1)
+
+[node name="Back Wall" type="Sprite2D" parent="Background"]
+scale = Vector2(1920, 1080)
+script = ExtResource("4_bg76d")
+color = Color(0.0196078, 0.0862745, 0.180392, 1)
 
 [node name="Floor" type="Sprite2D" parent="Background"]
 position = Vector2(0, 580)
@@ -33,15 +43,41 @@ texture = SubResource("ImageTexture_hn760")
 script = ExtResource("4_bg76d")
 color = Color(0.384314, 0.384314, 0.384314, 1)
 
+[node name="Memory Hole" type="Node2D" parent="."]
+material = ExtResource("4_uke7e")
+position = Vector2(775, 0)
+script = ExtResource("3_ncwiv")
+
+[node name="Sprite2D" type="Sprite2D" parent="Memory Hole"]
+use_parent_material = true
+texture = ExtResource("5_2haek")
+
+[node name="Tooltip" type="Label" parent="Memory Hole"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Escape to memories"
+label_settings = ExtResource("5_byrgx")
+
 [node name="Telescreen" parent="." instance=ExtResource("2_3efa1")]
-position = Vector2(-200, 0)
+position = Vector2(-300, 0)
 
 [node name="Chocolate" parent="." instance=ExtResource("1_kedgu")]
-position = Vector2(-200, -250)
+position = Vector2(-300, -220)
 
 [node name="Door" parent="." instance=ExtResource("3_2wud3")]
-position = Vector2(-660, 75)
+position = Vector2(-800, 75)
+
+[node name="Tooltip" type="Label" parent="Door"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Go outside"
+label_settings = ExtResource("5_byrgx")
+
+[node name="Table" type="Sprite2D" parent="."]
+position = Vector2(324, 242)
+texture = ExtResource("9_eqtf4")
 
 [node name="Player" parent="." instance=ExtResource("3_foiyb")]
+position = Vector2(0, 200)
 
 [node name="Foreground" type="Node2D" parent="."]

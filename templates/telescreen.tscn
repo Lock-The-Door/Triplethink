@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://chs8chdi5ghq"]
 
 [ext_resource type="PackedScene" uid="uid://cr544a28wn7b5" path="res://scenes/telescreen/big_brother.tscn" id="1_28ek2"]
-[ext_resource type="Texture2D" uid="uid://wnq5wkllmx45" path="res://assets/telescreen.svg" id="1_kx2dl"]
+[ext_resource type="Texture2D" uid="uid://wnq5wkllmx45" path="res://assets/telescreen/telescreen.svg" id="1_kx2dl"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_v2uc4"]
 viewport_path = NodePath("Viewports/Big Brother")
