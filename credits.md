@@ -1,3 +1,7 @@
+# Inspirations
+1984 - George Orwell
+Henry Stickmin Collection - PuffballsUnited
+
 # Fonts
 Sometype Mono - Designed by Ryoichi Tsunekawa, Retrieved from Google Fonts
 
