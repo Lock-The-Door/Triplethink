@@ -81,7 +81,6 @@ texture = ExtResource("9_eqtf4")
 
 [node name="Player" parent="." instance=ExtResource("3_foiyb")]
 position = Vector2(0, 200)
-platforming_enabled = true
 
 [node name="Foreground" type="Node2D" parent="."]
 
