@@ -3,6 +3,7 @@ extends Control
 
 @export var transition_time := 1
 @export var transition_color := Color(0, 0, 0)
+# @export var player_target := Vector2(0, 0)
 
 var color_rect := ColorRect.new()
 var transition_in := true
@@ -20,6 +21,11 @@ func _ready() -> void:
 
 	if not transition_in:
 		transition_color.a = 0
+	# else:
+	# 	var player_data: PlayerData = get_node("/root/PlayerData")
+	# 	var player := player_data.get_player()
+	# 	if player != null:
+	# 		player.walk_to(player_target)
 
 func _process(delta: float) -> void:
 	if transition_in:
