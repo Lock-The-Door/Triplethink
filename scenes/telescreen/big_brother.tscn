@@ -1,8 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://cr544a28wn7b5"]
+[gd_scene load_steps=8 format=3 uid="uid://cr544a28wn7b5"]
 
-[ext_resource type="Texture2D" uid="uid://qanva4n4g13" path="res://assets/telescreen/big_brother/face1.png" id="1_1gfbx"]
 [ext_resource type="Script" path="res://scripts/noise_animation.gd" id="1_55v77"]
-[ext_resource type="Texture2D" uid="uid://bei6yf8uny8o4" path="res://assets/telescreen/big_brother/face.png" id="2_2gywv"]
+[ext_resource type="Texture2D" uid="uid://c4l8x5sar0uwd" path="res://assets/telescreen/big_brother/big brother.svg" id="2_bo34r"]
 [ext_resource type="Texture2D" uid="uid://bo5gphb8lylfl" path="res://assets/telescreen/big_brother/Eye Socket.svg" id="3_6562g"]
 [ext_resource type="Texture2D" uid="uid://cd3dhbokra583" path="res://assets/telescreen/Iris.svg" id="4_18s4p"]
 [ext_resource type="Script" path="res://scripts/telescreen/eye.gd" id="4_wo0b7"]
@@ -17,20 +16,6 @@ width = 1920
 height = 1080
 noise = SubResource("FastNoiseLite_ms18c")
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_quuiy"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("1_1gfbx")
-}, {
-"duration": 1.0,
-"texture": ExtResource("2_2gywv")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
 [node name="Big Brother" type="Node2D"]
 scale = Vector2(2, 2)
 
@@ -42,22 +27,25 @@ texture = SubResource("NoiseTexture2D_vndgv")
 script = ExtResource("1_55v77")
 texture_size = Vector2i(1080, 1920)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_quuiy")
-frame_progress = 0.299027
+[node name="BB" type="Node2D" parent="."]
 
-[node name="Right Eye" type="Sprite2D" parent="."]
-position = Vector2(85, -84)
+[node name="BB Face" type="Sprite2D" parent="BB"]
+texture = ExtResource("2_bo34r")
+
+[node name="Right Eye" type="Sprite2D" parent="BB"]
+position = Vector2(90, -75)
 texture = ExtResource("3_6562g")
 script = ExtResource("4_wo0b7")
 
-[node name="Iris" type="Sprite2D" parent="Right Eye"]
+[node name="Iris" type="Sprite2D" parent="BB/Right Eye"]
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("4_18s4p")
 
-[node name="Left Eye" type="Sprite2D" parent="."]
-position = Vector2(-43, -86)
+[node name="Left Eye" type="Sprite2D" parent="BB"]
+position = Vector2(-90, -75)
 texture = ExtResource("3_6562g")
 script = ExtResource("4_wo0b7")
 
-[node name="Iris" type="Sprite2D" parent="Left Eye"]
+[node name="Iris" type="Sprite2D" parent="BB/Left Eye"]
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("4_18s4p")

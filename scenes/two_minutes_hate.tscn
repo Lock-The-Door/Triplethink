@@ -1,0 +1,257 @@
+[gd_scene load_steps=24 format=3 uid="uid://dkrkpj3uw5i2a"]
+
+[ext_resource type="Script" path="res://scripts/transitioner.gd" id="1_ntqmx"]
+[ext_resource type="Script" path="res://scripts/color_texture.gd" id="1_ww51t"]
+[ext_resource type="Script" path="res://scripts/two_minutes_hate.gd" id="1_y7ini"]
+[ext_resource type="Texture2D" uid="uid://ylm0ayyp62bp" path="res://assets/hate crowd.svg" id="3_gduq4"]
+[ext_resource type="Texture2D" uid="uid://wnq5wkllmx45" path="res://assets/telescreen/telescreen.svg" id="3_kpcjg"]
+[ext_resource type="PackedScene" uid="uid://b7vvkrwnkx83e" path="res://templates/player.tscn" id="4_aprvl"]
+[ext_resource type="PackedScene" uid="uid://d36p5ai7wv0o5" path="res://scenes/telescreen/two_minutes_hate.tscn" id="4_pmm6f"]
+[ext_resource type="Script" path="res://scripts/hate_crowd.gd" id="6_g5nfe"]
+[ext_resource type="Texture2D" uid="uid://stoidqwlrkun" path="res://assets/heart.svg" id="7_hy4d6"]
+[ext_resource type="Texture2D" uid="uid://dscwo2l6n4kjm" path="res://assets/FireIcon.svg" id="8_wq8do"]
+[ext_resource type="Script" path="res://scripts/hate_minigame_button.gd" id="10_neai4"]
+[ext_resource type="Material" uid="uid://dfdl63cugpru1" path="res://resources/highlight.material" id="11_aip7q"]
+[ext_resource type="Texture2D" uid="uid://dcr4ywhbvwqd3" path="res://assets/button.svg" id="12_uu5ag"]
+[ext_resource type="Shader" path="res://resources/highlight.gdshader" id="13_s2x5r"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_bqrdk"]
+
+[sub_resource type="Gradient" id="Gradient_rbk64"]
+colors = PackedColorArray(0.459959, 0.459959, 0.459959, 1, 1, 1, 1, 0)
+
+[sub_resource type="Animation" id="Animation_radug"]
+resource_name = "show"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(2, 2),
+"update": 0,
+"values": [Vector2(0, 650), Vector2(0, 300)]
+}
+
+[sub_resource type="Animation" id="Animation_p8uep"]
+resource_name = "hide"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(2, 2),
+"update": 0,
+"values": [Vector2(0, 300), Vector2(0, 650)]
+}
+
+[sub_resource type="Animation" id="Animation_gmqqq"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 650)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jm71r"]
+_data = {
+"RESET": SubResource("Animation_gmqqq"),
+"hide": SubResource("Animation_p8uep"),
+"show": SubResource("Animation_radug")
+}
+
+[sub_resource type="GDScript" id="GDScript_l3s61"]
+resource_name = "ShowButtons"
+script/source = "extends AnimationPlayer
+
+@onready var game: TwoMinutesHate = get_node(\"%TwoMinutesHate\")
+
+var showing := false
+
+func _process(_delta: float) -> void:
+	if game.started and not showing:
+		play(\"show\")
+		showing = true
+	elif not game.started and showing:
+		play(\"hide\")
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qf88r"]
+radius = 100.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fw6su"]
+shader = ExtResource("13_s2x5r")
+shader_parameter/color = Color(0, 0, 0, 1)
+shader_parameter/width = 15.0
+shader_parameter/pattern = 1
+shader_parameter/inside = false
+shader_parameter/add_margins = true
+
+[node name="TwoMinutesHate" type="Node2D"]
+script = ExtResource("1_y7ini")
+
+[node name="Telescreen" type="Node2D" parent="."]
+position = Vector2(0, -200)
+scale = Vector2(2, 2)
+
+[node name="FakeTelescreen" type="Sprite2D" parent="Telescreen"]
+texture = ExtResource("3_kpcjg")
+
+[node name="BG" type="Sprite2D" parent="Telescreen/FakeTelescreen"]
+z_index = -1
+scale = Vector2(560, 300)
+texture = SubResource("PlaceholderTexture2D_bqrdk")
+script = ExtResource("1_ww51t")
+color = Color(0, 0, 0, 1)
+
+[node name="Content" type="SubViewportContainer" parent="Telescreen/FakeTelescreen"]
+show_behind_parent = true
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.083
+anchor_right = 0.95
+anchor_bottom = 0.917
+offset_left = -269.4
+offset_top = -162.5
+offset_right = 1121.4
+offset_bottom = 646.45
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="Telescreen/FakeTelescreen/Content"]
+disable_3d = true
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="TwoMinutesHate" parent="Telescreen/FakeTelescreen/Content/SubViewport" instance=ExtResource("4_pmm6f")]
+unique_name_in_owner = true
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="Floor" type="Sprite2D" parent="Background"]
+position = Vector2(0, 475)
+scale = Vector2(1920, 135)
+script = ExtResource("1_ww51t")
+color = Color(0.384314, 0.384314, 0.384314, 1)
+
+[node name="Crowd" type="Sprite2D" parent="Background"]
+modulate = Color(0.537255, 0.537255, 0.537255, 1)
+position = Vector2(0, 250)
+texture = ExtResource("3_gduq4")
+script = ExtResource("6_g5nfe")
+
+[node name="Hearts" type="CPUParticles2D" parent="Background/Crowd"]
+show_behind_parent = true
+emitting = false
+amount = 10
+lifetime = 5.0
+lifetime_randomness = 0.5
+texture = ExtResource("7_hy4d6")
+emission_shape = 3
+emission_rect_extents = Vector2(1000, 0)
+direction = Vector2(0, 1)
+gravity = Vector2(0, -200)
+initial_velocity_max = 10.0
+angular_velocity_min = -10.0
+angular_velocity_max = 10.0
+linear_accel_max = 10.0
+scale_amount_min = 0.5
+scale_amount_max = 1.5
+color_ramp = SubResource("Gradient_rbk64")
+
+[node name="Hates" type="CPUParticles2D" parent="Background/Crowd"]
+show_behind_parent = true
+emitting = false
+amount = 10
+lifetime = 5.0
+lifetime_randomness = 0.5
+texture = ExtResource("8_wq8do")
+emission_shape = 3
+emission_rect_extents = Vector2(1000, 0)
+direction = Vector2(0, 1)
+gravity = Vector2(0, -200)
+initial_velocity_max = 10.0
+angular_velocity_min = -10.0
+angular_velocity_max = 10.0
+linear_accel_max = 10.0
+scale_amount_min = 0.2
+scale_amount_max = 0.5
+color_ramp = SubResource("Gradient_rbk64")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("4_aprvl")]
+position = Vector2(0, 250)
+
+[node name="GameButtons" type="Node2D" parent="."]
+position = Vector2(0, 650)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GameButtons"]
+libraries = {
+"": SubResource("AnimationLibrary_jm71r")
+}
+script = SubResource("GDScript_l3s61")
+
+[node name="Love" type="Node2D" parent="GameButtons"]
+material = ExtResource("11_aip7q")
+position = Vector2(500, 0)
+script = ExtResource("10_neai4")
+
+[node name="Sprite2D" type="Sprite2D" parent="GameButtons/Love"]
+use_parent_material = true
+texture = ExtResource("12_uu5ag")
+
+[node name="Area2D" type="Area2D" parent="GameButtons/Love"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameButtons/Love/Area2D"]
+shape = SubResource("CircleShape2D_qf88r")
+
+[node name="Icon" type="Sprite2D" parent="GameButtons/Love"]
+texture = ExtResource("7_hy4d6")
+
+[node name="Hate" type="Node2D" parent="GameButtons"]
+material = ExtResource("11_aip7q")
+position = Vector2(-500, 0)
+script = ExtResource("10_neai4")
+is_hate = true
+
+[node name="Sprite2D" type="Sprite2D" parent="GameButtons/Hate"]
+use_parent_material = true
+texture = ExtResource("12_uu5ag")
+
+[node name="Area2D" type="Area2D" parent="GameButtons/Hate"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameButtons/Hate/Area2D"]
+shape = SubResource("CircleShape2D_qf88r")
+
+[node name="Icon" type="Sprite2D" parent="GameButtons/Hate"]
+material = SubResource("ShaderMaterial_fw6su")
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("8_wq8do")
+
+[node name="Transitioner" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_ntqmx")
+player_target = Vector2(0, 250)
+
+[connection signal="animation_finished" from="GameButtons/AnimationPlayer" to="GameButtons/AnimationPlayer" method="_on_animation_finished"]
