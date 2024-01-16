@@ -13,7 +13,7 @@ texture = ExtResource("1_kx2dl")
 
 [node name="Content" type="Sprite2D" parent="Frame"]
 show_behind_parent = true
-scale = Vector2(0.25, 0.25)
+scale = Vector2(0.28, 0.28)
 texture = SubResource("ViewportTexture_v2uc4")
 region_rect = Rect2(-960, -540, 1920, 1080)
 
