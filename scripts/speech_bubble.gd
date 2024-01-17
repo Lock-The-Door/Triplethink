@@ -1,3 +1,4 @@
+class_name SpeechBubble
 extends Control
 
 const BUBBLE_PADDING = 10
@@ -14,7 +15,9 @@ const BUBBLE_PADDING = 10
 var time = 0.0
 
 func _ready():
-	bubble.size.x = width
+	label.text = text
+	size.x = width
+	position.x -= size.x / 2
 
 	if target == null:
 		arrow.visible = false
@@ -30,7 +33,7 @@ func _process(delta):
 	if arrow.visible == false:
 		return
 
-	var direction = (target.global_position - bubble.global_position).normalized()
+	var direction = ((target.global_position) - (bubble.global_position + bubble.size/2)).normalized()
 	var angle = atan2(direction.y, direction.x)
 	# arrow at 0 is pointing down
 	arrow.rotation_degrees = angle * 180 / PI - 90

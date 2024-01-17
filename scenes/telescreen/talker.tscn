@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://xn0wu2ttl7qn"]
+
+[ext_resource type="Texture2D" uid="uid://de85o0guj7h0j" path="res://assets/talker.svg" id="1_f30t0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qqcxc"]
+atlas = ExtResource("1_f30t0")
+region = Rect2(0, 0, 470, 622)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3o7ou"]
+atlas = ExtResource("1_f30t0")
+region = Rect2(470, 0, 470, 622)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y6rkc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qqcxc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3o7ou")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[node name="Talker" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 301)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_y6rkc")
+autoplay = "default"
+frame_progress = 0.340751
+
+[node name="Camera2D" type="Camera2D" parent="."]

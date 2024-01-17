@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dh40vfqn1gd8n"]
+[gd_scene load_steps=6 format=3 uid="uid://dh40vfqn1gd8n"]
 
 [ext_resource type="Texture2D" uid="uid://by2y2re6p7hnr" path="res://assets/winston.svg" id="1_s77vp"]
+[ext_resource type="PackedScene" uid="uid://drqy04ny5hijs" path="res://templates/speech_bubble.tscn" id="2_hpqbs"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_aj8j7"]
 size = Vector2(1920, 1080)
@@ -46,3 +47,11 @@ texture = ExtResource("1_s77vp")
 libraries = {
 "": SubResource("AnimationLibrary_hplv6")
 }
+
+[node name="SpeechBubble" parent="." instance=ExtResource("2_hpqbs")]
+layout_mode = 1
+offset_left = -250.0
+offset_right = -201.725
+pivot_offset = Vector2(250, 0)
+
+[editable path="SpeechBubble"]

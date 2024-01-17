@@ -1,5 +1,7 @@
 extends Node
 
+const CHARACTER_NAME = "6079 Winston Smith"
+
 var _global_position := Vector2.ZERO
 var _chocolate := 0
 var _player: Player = null

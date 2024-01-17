@@ -1,6 +1,7 @@
 extends Interactable
 
 @onready var _cover: RigidBody2D = get_node("Cover")
+@onready var _tooltip: Label = get_node("Tooltip")
 
 func _on_clicked() -> void:
 	# Check if the cover is already removed
@@ -10,10 +11,12 @@ func _on_clicked() -> void:
 		_cover.freeze = false
 		_cover.apply_impulse(Vector2(0, -1500), Vector2(0, 0))
 		_cover.constant_torque = (randf_range(5000, 10000) * (1 if randf() > 0.5 else -1))
+		# Add the tooltip
+		_tooltip.visibility_layer = 1
 		# Remove the cover after it leaves the screen
 		var visibility_notifier = _cover.get_node("VisibleOnScreenNotifier2D")
 		visibility_notifier.connect("screen_exited", _on_cover_exited)
-		
+		get_tree().call_group("Telescreen", "queue_content", "Warning")
 		return
 
 	# Todo: Chopper death
