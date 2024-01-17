@@ -2,8 +2,12 @@ extends Interactable
 
 @onready var _cover: RigidBody2D = get_node("Cover")
 @onready var _tooltip: Label = get_node("Tooltip")
+@onready var _player_data: PlayerData = get_node("/root/PlayerData")
 
 func _on_clicked() -> void:
+	# Move player
+	_player_data.get_player().walk_to(Vector2(global_position.x, _player_data.get_position().y))
+
 	# Check if the cover is already removed
 	if _cover != null and _cover.freeze:
 		_cover.use_parent_material = false

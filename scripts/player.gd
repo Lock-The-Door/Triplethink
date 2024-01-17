@@ -23,7 +23,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if _override_target != global_position:
 		velocity = (_override_target - position).normalized() * player_speed
-		if _override_target.distance_to(global_position) < 1:
+		if _override_target.distance_to(global_position) < 2:
 			_override_target = global_position
 			velocity = Vector2.ZERO
 	elif platforming_enabled:

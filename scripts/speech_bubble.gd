@@ -15,7 +15,8 @@ const BUBBLE_PADDING = 10
 var time = 0.0
 
 func _ready():
-	label.text = text
+	var player_data: PlayerData = get_node("/root/PlayerData")
+	label.text = player_data.substitute_text(text)
 	size.x = width
 	position.x -= size.x / 2
 

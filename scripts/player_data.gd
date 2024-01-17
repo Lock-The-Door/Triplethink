@@ -21,3 +21,6 @@ func get_position() -> Vector2:
 
 func get_player() -> Player:
 	return _player
+
+func substitute_text(text: String) -> String:
+	return text.replace("[Player]", CHARACTER_NAME)

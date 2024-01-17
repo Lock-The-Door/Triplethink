@@ -23,9 +23,9 @@
      inkscape:pagecheckerboard="1"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
-     inkscape:zoom="0.71075725"
-     inkscape:cx="162.50274"
-     inkscape:cy="301.7908"
+     inkscape:zoom="0.48941086"
+     inkscape:cx="88.882376"
+     inkscape:cy="240.08458"
      inkscape:window-width="1504"
      inkscape:window-height="931"
      inkscape:window-x="0"
@@ -76,6 +76,11 @@
          rx="15.477802"
          ry="12.477801" />
     </g>
+    <path
+       id="rect4"
+       style="fill:#2830b1;fill-rule:evenodd;stroke:#000000;stroke-width:5;stroke-linecap:round"
+       d="m 49.0625,174.96871 c -7.446995,1.76706 -52.3626113,39.66598 -52.1112852,56.02344 0.2513261,16.35746 24.3948382,11.46626 28.1455782,15.19333 3.75074,3.72707 11.245707,-37.81319 23.965707,-25.21673 12.72,12.59646 0,134.53125 0,134.53125 h 3.808594 V 463.51758 H 90.1875 V 355.5 h 23.92188 v 108.01758 h 37.3164 V 355.5 h 3 c 0,0 -9.88029,-122.59187 0,-135.33594 9.88029,-12.74407 13.83904,21.18725 19.14214,18.25169 5.3031,-2.93555 24.99906,5.00178 28.12677,-10.16172 3.12771,-15.1635 -34.06552,-53.28532 -47.26891,-53.28532 0,0 -34.6335,-7.35328 -52.68164,-7.35328 -18.048144,0 -52.68164,7.35328 -52.68164,7.35328 z"
+       sodipodi:nodetypes="szzzcccccccccczzzsss" />
     <circle
        style="font-variation-settings:normal;opacity:1;fill:#ddbe6b;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;stop-color:#000000;stop-opacity:1"
        id="path1"
@@ -100,10 +105,6 @@
        style="fill:#ddbe6b;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:5;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1"
        d="m 67.560933,134.31757 70.778117,3.21719 v 0 z"
        id="path4" />
-    <path
-       id="rect4"
-       style="fill:#2830b1;fill-rule:evenodd;stroke:#000000;stroke-width:5;stroke-linecap:round"
-       d="m 49.0625,177.75 v 1.98438 L 48.636719,179.30859 0.29492188,227.64844 10.816406,238.23633 21.337891,248.69141 49.0625,220.96875 V 355.5 h 3.808594 V 463.51758 H 90.1875 V 355.5 h 23.92188 v 108.01758 h 37.3164 V 355.5 h 3 V 220.16406 l 28.52734,28.52735 21.04297,-21.04297 -48.34179,-48.33985 -1.22852,1.22852 V 177.75 Z" />
     <ellipse
        style="font-variation-settings:normal;opacity:1;fill:#9d6a37;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:5.21664;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;stop-color:#000000;stop-opacity:1"
        id="path8"

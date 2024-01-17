@@ -31,6 +31,6 @@ position = Vector2(0, 301)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_y6rkc")
 autoplay = "default"
-frame_progress = 0.340751
+frame_progress = 0.0375484
 
 [node name="Camera2D" type="Camera2D" parent="."]
