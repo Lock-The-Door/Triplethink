@@ -10,3 +10,6 @@ https://godotshaders.com/shader/2d-outline-inline/
 
 # Assets
 Fire - https://commons.wikimedia.org/wiki/File:FireIcon.svg
+
+# Chess Game
+ApplesToOranges vs WorstFish - https://lichess.org/iZwbL5jZ/black#165

@@ -19,7 +19,7 @@ func _process(delta: float) -> void:
 
 	slogan_timer += delta
 
-	if slogan_timer > 3.0:
+	if slogan_timer > 15.0:
 		slogan_timer = 0.0
 		queue_content("Slogan")
 

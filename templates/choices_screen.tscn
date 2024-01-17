@@ -1,0 +1,85 @@
+[gd_scene load_steps=5 format=3 uid="uid://dj5xjdge02suf"]
+
+[ext_resource type="Script" path="res://scripts/choices_screen.gd" id="1_x3er8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0h3xr"]
+bg_color = Color(0.278991, 0.278991, 0.278991, 0.196078)
+
+[sub_resource type="LabelSettings" id="LabelSettings_cs78n"]
+font_size = 64
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_xnrbt"]
+size = Vector2(50, 50)
+
+[node name="ChoicesScreen" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0h3xr")
+script = ExtResource("1_x3er8")
+
+[node name="Choices" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 2
+
+[node name="Option A" type="Button" parent="Choices"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Option A"
+
+[node name="Option B" type="Button" parent="Choices"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Option B"
+
+[node name="Option C" type="Button" parent="Choices"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Option C"
+
+[node name="Option D" type="Button" parent="Choices"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Option D"
+
+[node name="Question" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Question"]
+layout_mode = 2
+
+[node name="QuestionLabel" type="Label" parent="Question/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Which option do you like the most?"
+label_settings = SubResource("LabelSettings_cs78n")
+
+[node name="QuestionImage" type="TextureRect" parent="Question/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("PlaceholderTexture2D_xnrbt")
+
+[connection signal="pressed" from="Choices/Option A" to="." method="_on_option_a_pressed"]
+[connection signal="pressed" from="Choices/Option B" to="." method="_on_option_b_pressed"]
+[connection signal="pressed" from="Choices/Option C" to="." method="_on_option_c_pressed"]
+[connection signal="pressed" from="Choices/Option D" to="." method="_on_option_d_pressed"]
