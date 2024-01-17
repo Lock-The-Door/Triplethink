@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://0nxq7q748tc0"]
+[gd_scene load_steps=24 format=3 uid="uid://0nxq7q748tc0"]
 
 [ext_resource type="PackedScene" uid="uid://84ot3l0gobbr" path="res://templates/chocolate.tscn" id="1_kedgu"]
 [ext_resource type="PackedScene" uid="uid://chs8chdi5ghq" path="res://templates/telescreen.tscn" id="2_3efa1"]
@@ -13,12 +13,15 @@
 [ext_resource type="Texture2D" uid="uid://cqt2kh3as3fbc" path="res://assets/table.svg" id="9_eqtf4"]
 [ext_resource type="Script" path="res://scripts/transitioner.gd" id="11_pfp16"]
 [ext_resource type="Texture2D" uid="uid://begxga3hn6ldv" path="res://assets/bed.svg" id="13_3kjm5"]
+[ext_resource type="Script" path="res://scripts/interactable_vent.gd" id="13_61he1"]
+[ext_resource type="Material" uid="uid://c85g1mlhc1qf2" path="res://resources/highlight_sheet.material" id="13_glndo"]
+[ext_resource type="Texture2D" uid="uid://dpu842rp8aq1i" path="res://assets/vent.svg" id="14_js3fw"]
 
 [sub_resource type="GDScript" id="GDScript_pbdig"]
 resource_name = "Background"
 script/source = "extends ColorSprite2D
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	scale = get_window().size
 "
 
@@ -73,6 +76,9 @@ func _process(delta: float) -> void:
 		wait = randi_range(5, 15)
 		play(\"passing_object\")
 "
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d21jr"]
+size = Vector2(280, 160)
 
 [node name="Home" type="Node2D"]
 
@@ -147,6 +153,40 @@ position = Vector2(0, 160)
 
 [node name="Foreground" type="Node2D" parent="."]
 
+[node name="Bed" type="Sprite2D" parent="."]
+position = Vector2(775, 229)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("13_3kjm5")
+
+[node name="Vent" type="Node2D" parent="."]
+material = ExtResource("13_glndo")
+position = Vector2(364, -267)
+script = ExtResource("13_61he1")
+
+[node name="Sprite2D" type="Sprite2D" parent="Vent"]
+use_parent_material = true
+texture = ExtResource("14_js3fw")
+hframes = 3
+frame = 2
+
+[node name="Cover" type="RigidBody2D" parent="Vent"]
+use_parent_material = true
+collision_layer = 0
+collision_mask = 0
+mass = 5.0
+freeze = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Vent/Cover"]
+use_parent_material = true
+texture = ExtResource("14_js3fw")
+hframes = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vent/Cover"]
+shape = SubResource("RectangleShape2D_d21jr")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Vent/Cover"]
+rect = Rect2(-140, -80, 280, 160)
+
 [node name="Transitioner" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
@@ -155,8 +195,3 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("11_pfp16")
-
-[node name="Bed" type="Sprite2D" parent="."]
-position = Vector2(775, 229)
-scale = Vector2(1.25, 1.25)
-texture = ExtResource("13_3kjm5")

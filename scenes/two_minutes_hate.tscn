@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dkrkpj3uw5i2a"]
+[gd_scene load_steps=25 format=3 uid="uid://dkrkpj3uw5i2a"]
 
 [ext_resource type="Script" path="res://scripts/transitioner.gd" id="1_ntqmx"]
 [ext_resource type="Script" path="res://scripts/color_texture.gd" id="1_ww51t"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://scripts/hate_minigame_button.gd" id="10_neai4"]
 [ext_resource type="Material" uid="uid://dfdl63cugpru1" path="res://resources/highlight.material" id="11_aip7q"]
 [ext_resource type="Texture2D" uid="uid://dcr4ywhbvwqd3" path="res://assets/button.svg" id="12_uu5ag"]
+[ext_resource type="LabelSettings" uid="uid://ds8x5mp1hu83a" path="res://resources/tooltip_label_settings.tres" id="13_hgrim"]
 [ext_resource type="Shader" path="res://resources/highlight.gdshader" id="13_s2x5r"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_bqrdk"]
@@ -20,19 +21,19 @@
 [sub_resource type="Gradient" id="Gradient_rbk64"]
 colors = PackedColorArray(0.459959, 0.459959, 0.459959, 1, 1, 1, 1, 0)
 
-[sub_resource type="Animation" id="Animation_radug"]
-resource_name = "show"
+[sub_resource type="Animation" id="Animation_gmqqq"]
+resource_name = "RESET"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath(".:position")
-tracks/0/interp = 2
+tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(2, 2),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 650), Vector2(0, 300)]
+"values": [Vector2(0, 650)]
 }
 
 [sub_resource type="Animation" id="Animation_p8uep"]
@@ -50,19 +51,19 @@ tracks/0/keys = {
 "values": [Vector2(0, 300), Vector2(0, 650)]
 }
 
-[sub_resource type="Animation" id="Animation_gmqqq"]
-resource_name = "RESET"
+[sub_resource type="Animation" id="Animation_radug"]
+resource_name = "show"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(2, 2),
 "update": 0,
-"values": [Vector2(0, 650)]
+"values": [Vector2(0, 650), Vector2(0, 300)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jm71r"]
@@ -227,6 +228,12 @@ shape = SubResource("CircleShape2D_qf88r")
 [node name="Icon" type="Sprite2D" parent="GameButtons/Love"]
 texture = ExtResource("7_hy4d6")
 
+[node name="Tooltip" type="Label" parent="GameButtons/Love"]
+offset_right = 40.0
+offset_bottom = 20.0
+text = "Love"
+label_settings = ExtResource("13_hgrim")
+
 [node name="Hate" type="Node2D" parent="GameButtons"]
 material = ExtResource("11_aip7q")
 position = Vector2(-500, 0)
@@ -246,6 +253,12 @@ shape = SubResource("CircleShape2D_qf88r")
 material = SubResource("ShaderMaterial_fw6su")
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("8_wq8do")
+
+[node name="Tooltip" type="Label" parent="GameButtons/Hate"]
+offset_right = 40.0
+offset_bottom = 20.0
+text = "Hate"
+label_settings = ExtResource("13_hgrim")
 
 [node name="Transitioner" type="Control" parent="."]
 layout_mode = 3
