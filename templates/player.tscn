@@ -1,10 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://b7vvkrwnkx83e"]
+[gd_scene load_steps=6 format=3 uid="uid://b7vvkrwnkx83e"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_cc1bl"]
 [ext_resource type="Texture2D" uid="uid://by2y2re6p7hnr" path="res://assets/winston.svg" id="2_65i4w"]
+[ext_resource type="Texture2D" uid="uid://ckcy7n0hkwidq" path="res://assets/dead_winston.svg" id="2_wwyfu"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xrirv"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_wwyfu")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_65i4w")
@@ -24,7 +33,7 @@ script = ExtResource("1_cc1bl")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_xrirv")
 animation = &"idle"
-frame_progress = 0.149496
+autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_si48k")
