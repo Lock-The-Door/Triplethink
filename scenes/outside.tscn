@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://80s1devy0l86"]
+[gd_scene load_steps=10 format=3 uid="uid://80s1devy0l86"]
 
 [ext_resource type="Script" path="res://scripts/color_texture.gd" id="1_tlk6w"]
 [ext_resource type="Texture2D" uid="uid://cdekd78uvukl7" path="res://assets/door.svg" id="1_vbbk2"]
+[ext_resource type="Texture2D" uid="uid://ct7c3wh1keedy" path="res://assets/wall.png" id="2_2aheq"]
 [ext_resource type="PackedScene" uid="uid://chs8chdi5ghq" path="res://templates/telescreen.tscn" id="2_4551n"]
 [ext_resource type="PackedScene" uid="uid://b7vvkrwnkx83e" path="res://templates/player.tscn" id="3_gtr6i"]
 [ext_resource type="Script" path="res://scripts/interactables/transition_interactable.gd" id="5_bn1sh"]
@@ -16,17 +17,30 @@ scale = Vector2(1920, 1080)
 script = ExtResource("1_tlk6w")
 color = Color(0, 0.560784, 0.74902, 1)
 
+[node name="Wall" type="Sprite2D" parent="."]
+position = Vector2(-1, 0)
+scale = Vector2(1.19397, 1.19397)
+texture = ExtResource("2_2aheq")
+region_enabled = true
+region_rect = Rect2(672, 120, 696, 912)
+
+[node name="floor" type="Sprite2D" parent="."]
+position = Vector2(0, 500)
+scale = Vector2(1920, 200)
+script = ExtResource("1_tlk6w")
+color = Color(0.231373, 0.231373, 0.231373, 1)
+
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Door" type="Sprite2D" parent="."]
-position = Vector2(0, 250)
+position = Vector2(1.5, 129)
 texture = ExtResource("1_vbbk2")
 
 [node name="Telescreen" parent="." instance=ExtResource("2_4551n")]
-position = Vector2(0, -200)
+position = Vector2(1.5, -321)
 
 [node name="Player" parent="." instance=ExtResource("3_gtr6i")]
-position = Vector2(0, 315)
+position = Vector2(2, 233)
 
 [node name="Right Arrow" type="Node2D" parent="."]
 position = Vector2(700, 0)

@@ -62,4 +62,18 @@ width = 300
 characters_per_second = 30
 target = NodePath("../../..")
 
+[node name="Helicopter" type="SubViewport" parent="Viewports"]
+disable_3d = true
+size = Vector2i(1920, 1080)
+
+[node name="Talker" parent="Viewports/Helicopter" instance=ExtResource("6_4qgc7")]
+
+[node name="SpeechBubble" parent="Viewports/Helicopter" node_paths=PackedStringArray("target") instance=ExtResource("5_nxxuv")]
+process_mode = 4
+visible = false
+text = "Here comes a chopper to chop off your head"
+width = 300
+characters_per_second = 30
+target = NodePath("../../..")
+
 [node name="Camera2D" type="Camera2D" parent="."]

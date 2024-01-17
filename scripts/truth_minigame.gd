@@ -101,3 +101,5 @@ func _word_miscorrected(label: TruthWord) -> void:
 func _end_game() -> void:
     started = false
     print("Game over! Score is " + str(score) + ".")
+    var transition := Transitioner.new(true, "two_minutes_hate_cutscene")
+    add_child(transition)

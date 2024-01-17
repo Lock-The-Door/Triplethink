@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://0nxq7q748tc0"]
+[gd_scene load_steps=30 format=3 uid="uid://0nxq7q748tc0"]
 
 [ext_resource type="PackedScene" uid="uid://84ot3l0gobbr" path="res://templates/chocolate.tscn" id="1_kedgu"]
 [ext_resource type="PackedScene" uid="uid://chs8chdi5ghq" path="res://templates/telescreen.tscn" id="2_3efa1"]
@@ -16,6 +16,9 @@
 [ext_resource type="Script" path="res://scripts/interactable_vent.gd" id="13_61he1"]
 [ext_resource type="Material" uid="uid://c85g1mlhc1qf2" path="res://resources/highlight_sheet.material" id="13_glndo"]
 [ext_resource type="Texture2D" uid="uid://dpu842rp8aq1i" path="res://assets/vent.svg" id="14_js3fw"]
+[ext_resource type="Texture2D" uid="uid://dscwo2l6n4kjm" path="res://assets/FireIcon.svg" id="17_xigtl"]
+[ext_resource type="Texture2D" uid="uid://csi2w13x3vrl7" path="res://assets/3216478.svg" id="18_swtm1"]
+[ext_resource type="PackedScene" uid="uid://bihuc7l11dwaf" path="res://templates/game_over.tscn" id="19_arhg7"]
 
 [sub_resource type="GDScript" id="GDScript_pbdig"]
 resource_name = "Background"
@@ -79,6 +82,91 @@ func _process(delta: float) -> void:
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d21jr"]
 size = Vector2(280, 160)
+
+[sub_resource type="Animation" id="Animation_ugpgq"]
+resource_name = "helicopter"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ChopperDeath/explosion:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(3.6, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("3216478:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(3, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-2391, -1139), Vector2(2846, 1688)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GameOver:process_mode")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_tsbcr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ChopperDeath/explosion:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("3216478:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-2391, -1139)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GameOver:process_mode")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jvtn3"]
+_data = {
+"RESET": SubResource("Animation_tsbcr"),
+"helicopter": SubResource("Animation_ugpgq")
+}
 
 [node name="Home" type="Node2D"]
 
@@ -202,3 +290,36 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("11_pfp16")
+
+[node name="ChopperDeath" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_jvtn3")
+}
+
+[node name="explosion" type="CPUParticles2D" parent="ChopperDeath"]
+amount = 1000
+texture = ExtResource("17_xigtl")
+emission_shape = 1
+emission_sphere_radius = 128.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 1000.0
+angular_velocity_min = -720.0
+angular_velocity_max = 720.0
+scale_amount_min = 0.25
+color = Color(1, 1, 1, 0)
+
+[node name="3216478" type="Sprite2D" parent="."]
+position = Vector2(-2391, -1139)
+texture = ExtResource("18_swtm1")
+flip_h = true
+
+[node name="GameOver" parent="." instance=ExtResource("19_arhg7")]
+process_mode = 4
+z_index = 10
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
+game_over_message = "Here comes a chopper to chop off your head"

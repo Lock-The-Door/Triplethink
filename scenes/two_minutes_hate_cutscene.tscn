@@ -1,0 +1,72 @@
+[gd_scene load_steps=8 format=3 uid="uid://ki3mcbs1b48c"]
+
+[ext_resource type="PackedScene" uid="uid://b7vvkrwnkx83e" path="res://templates/player.tscn" id="1_mcv4a"]
+[ext_resource type="Script" path="res://scripts/transitioner.gd" id="2_2r7t6"]
+[ext_resource type="PackedScene" uid="uid://chs8chdi5ghq" path="res://templates/telescreen.tscn" id="3_k5e6b"]
+[ext_resource type="PackedScene" uid="uid://drqy04ny5hijs" path="res://templates/speech_bubble.tscn" id="4_0kjo4"]
+
+[sub_resource type="Animation" id="Animation_u6hom"]
+resource_name = "new_animation"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-1111, 226), Vector2(-675, 226), Vector2(-675, 226), Vector2(1151, 226)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mkd0x"]
+_data = {
+"new_animation": SubResource("Animation_u6hom")
+}
+
+[sub_resource type="GDScript" id="GDScript_yr8ev"]
+resource_name = "trans"
+script/source = "extends AnimationPlayer
+
+
+
+func _on_animation_finished(anim_name: StringName) -> void:
+	var transition := Transitioner.new(true, \"two_minutes_hate\")
+	add_child(transition)
+"
+
+[node name="TwoMinutesHateCutscene" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_mcv4a")]
+position = Vector2(1151, 226)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Transitioner" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_2r7t6")
+
+[node name="Telescreen" parent="." instance=ExtResource("3_k5e6b")]
+position = Vector2(-381.495, -194.746)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mkd0x")
+}
+autoplay = "new_animation"
+script = SubResource("GDScript_yr8ev")
+
+[node name="SpeechBubble" parent="." node_paths=PackedStringArray("target") instance=ExtResource("4_0kjo4")]
+offset_left = 89.0
+offset_top = -295.0
+offset_right = 89.0
+offset_bottom = -295.0
+text = "Two Minutes Hate is beginning now!"
+target = NodePath("../Telescreen")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="AnimationPlayer" method="_on_animation_finished"]

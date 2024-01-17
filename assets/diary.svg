@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="787.41058"
+   height="602.18689"
+   viewBox="0 0 208.33572 159.32861"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3.2 (091e20ef0f, 2023-11-25, custom)"
+   sodipodi:docname="diary.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#505050"
+     bordercolor="#ffffff"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="0.36111912"
+     inkscape:cx="231.22564"
+     inkscape:cy="577.37182"
+     inkscape:window-width="1504"
+     inkscape:window-height="931"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-77.49643,-89.325738)">
+    <rect
+       style="fill:#2b271d;fill-rule:evenodd;stroke:#000000;stroke-width:1.32292;stroke-linecap:round"
+       id="rect1"
+       width="207.0128"
+       height="158.00569"
+       x="78.15789"
+       y="89.987198"
+       ry="3.2733862" />
+    <rect
+       style="fill:#ccc5b4;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.32292;stroke-linecap:round;stroke-dasharray:none"
+       id="rect2"
+       width="189.26884"
+       height="144.06401"
+       x="87.029869"
+       y="97.591751"
+       ry="3.2733862" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.265;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+       d="M 182.50925,98.436699 182.08677,241.23328"
+       id="path2"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-size:8.46667px;line-height:0;font-family:'Sometype Mono';-inkscape-font-specification:'Sometype Mono, Normal';letter-spacing:0.79375px;fill:#ccc5b4;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.32292;stroke-linecap:round;stroke-dasharray:none"
+       x="101.0254"
+       y="137.66243"
+       id="text2"><tspan
+         sodipodi:role="line"
+         style="stroke-width:1.32292"
+         x="101.0254"
+         y="137.66243"
+         id="tspan3" /></text>
+    <text
+       xml:space="preserve"
+       style="font-size:6.35px;line-height:0;font-family:'Sometype Mono';-inkscape-font-specification:'Sometype Mono, Normal';letter-spacing:0.79375px;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.32292;stroke-linecap:round;stroke-dasharray:none"
+       x="95.143158"
+       y="116.17945"
+       id="text4"><tspan
+         sodipodi:role="line"
+         id="tspan4"
+         style="stroke-width:1.32292;stroke:none;fill:#000000;fill-opacity:1"
+         x="95.143158"
+         y="116.17945">It's time to escape</tspan></text>
+  </g>
+</svg>

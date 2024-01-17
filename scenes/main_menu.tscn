@@ -1,12 +1,33 @@
-[gd_scene load_steps=2 format=3 uid="uid://6r7xh24j2cst"]
+[gd_scene load_steps=4 format=3 uid="uid://6r7xh24j2cst"]
 
 [ext_resource type="Theme" uid="uid://7th62e8o8v8r" path="res://resources/main.theme" id="1_atdox"]
+[ext_resource type="Script" path="res://scripts/patch.gd" id="2_0cjgn"]
+[ext_resource type="Script" path="res://scripts/load.gd" id="2_uvmqn"]
 
-[node name="Main Menu" type="Control"]
-layout_mode = 3
+[node name="Main Menu" type="ColorRect"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_atdox")
+color = Color(0, 0, 0, 1)
+script = ExtResource("2_uvmqn")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+script = ExtResource("2_0cjgn")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -10.0
+offset_right = 20.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Loading..."

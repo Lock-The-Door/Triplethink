@@ -23,7 +23,10 @@ func _on_clicked() -> void:
 		get_tree().call_group("Telescreen", "queue_content", "Warning")
 		return
 
-	# Todo: Chopper death
+	# chopper death
+	get_tree().call_group("Telescreen", "queue_content", "Helicopter")
+	var anim: AnimationPlayer = get_node("%ChopperDeath")
+	anim.play("helicopter")
 	
 
 func _on_cover_exited() -> void:

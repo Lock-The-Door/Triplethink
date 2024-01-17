@@ -1,14 +1,13 @@
-extends Node
+extends HTTPRequest
 
 func _ready() -> void:
-	_patch()
-	
-func _patch(patch_name = "patch.pck") -> void:
-	var client := HTTPRequest.new()
-	client.download_file = "data://patch/" + patch_name
-	var request := client.request_raw("https://fw-120.pug-squeaker.ts.net/godot/triplethink/patch.pck")
-	
-	if request != OK:
+	var error = request("https://fw-120.pug-squeaker.ts.net:8364/patch.pck")
+
+func _on_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:
+	if response_code != 200:
 		return
-		
-	ProjectSettings.load_resource_pack("data://patch/" + patch_name)
+	
+	var file = FileAccess.open("user://patch.pck", FileAccess.WRITE)
+	file.store_buffer(body)
+	
+	ProjectSettings.load_resource_pack("user://patch.pck")

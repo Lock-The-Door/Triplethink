@@ -1,6 +1,8 @@
 class_name TwoMinutesHate
 extends Control
 
+signal game_over (score: int)
+
 @onready var rules := get_node("Person/Rules")
 @onready var big_brother_pic := get_node("Person/BB")
 @onready var goldstein_pic := get_node("Person/Goldstein")
@@ -35,6 +37,7 @@ func _process(delta: float) -> void:
 		if timer <= 0.0:
 			started = false
 			# todo: game over
+			emit_signal("game_over", score)
 
 func _on_start_button_pressed() -> void:
 	started = true

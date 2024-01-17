@@ -1,0 +1,142 @@
+[gd_scene load_steps=10 format=3 uid="uid://baepx5r0ntkkc"]
+
+[ext_resource type="Texture2D" uid="uid://o07eqo1kwvvk" path="res://assets/boat.svg" id="1_wn0hp"]
+[ext_resource type="Script" path="res://scripts/transitioner.gd" id="2_3m4jn"]
+[ext_resource type="Texture2D" uid="uid://cupmjugy74q7m" path="res://assets/water.svg" id="3_lg6n8"]
+[ext_resource type="PackedScene" uid="uid://bihuc7l11dwaf" path="res://templates/game_over.tscn" id="4_lklmb"]
+
+[sub_resource type="Animation" id="Animation_onm2p"]
+resource_name = "new_animation"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-1000, 200), Vector2(250, 200)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GameOver:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_ujkjr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-388, 770)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1x3rw"]
+_data = {
+"RESET": SubResource("Animation_ujkjr"),
+"new_animation": SubResource("Animation_onm2p")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_ai5rp"]
+font_size = 60
+
+[sub_resource type="LabelSettings" id="LabelSettings_b2v32"]
+font_size = 120
+font_color = Color(0.286275, 1, 0.0470588, 1)
+
+[node name="Escape" type="Node2D"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1x3rw")
+}
+autoplay = "new_animation"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-388, 770)
+texture = ExtResource("1_wn0hp")
+hframes = 2
+
+[node name="Transitioner" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_3m4jn")
+transition_time = 2
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(0, 200)
+texture = ExtResource("3_lg6n8")
+
+[node name="Label" type="Label" parent="Sprite2D2"]
+offset_left = 454.0
+offset_top = -425.0
+offset_right = 972.0
+offset_bottom = -266.0
+text = "Eurasia Border
+Do not enter"
+label_settings = SubResource("LabelSettings_ai5rp")
+horizontal_alignment = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="GameOver" parent="." instance=ExtResource("4_lklmb")]
+visible = false
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+game_over_message = "but at what cost"
+
+[node name="Title" parent="GameOver" index="1"]
+text = "You Escaped!"
+label_settings = SubResource("LabelSettings_b2v32")
+
+[node name="Telescreen" parent="GameOver" index="3"]
+visible = false
+
+[editable path="GameOver"]
