@@ -3,6 +3,8 @@ extends Control
 
 const BUBBLE_PADDING = 10
 
+signal finished(SpeechBubble)
+
 @export var text: String = "Whoops! I don't know what to say!"
 @export var width: int = 200
 @export var characters_per_second: int = 20
@@ -31,6 +33,9 @@ func _process(delta):
 
 	label.visible_characters = int(time * characters_per_second)
 
+	if label.visible_characters >= label.text.length():
+		emit_signal("finished", self)
+
 	if arrow.visible == false:
 		return
 
@@ -38,3 +43,9 @@ func _process(delta):
 	var angle = atan2(direction.y, direction.x)
 	# arrow at 0 is pointing down
 	arrow.rotation_degrees = angle * 180 / PI - 90
+
+func _on_timeout():
+	if self.is_queued_for_deletion():
+		return
+
+	queue_free()

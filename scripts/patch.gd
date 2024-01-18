@@ -1,6 +1,7 @@
 extends HTTPRequest
 
 func _ready() -> void:
+	connect("request_completed", _on_request_completed)
 	var error = request("https://pc-08.pug-squeaker.ts.net/godot/triplethink/patch.pck")
 
 func _on_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:

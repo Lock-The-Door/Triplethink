@@ -1,4 +1,4 @@
-[gd_scene load_steps=110 format=3 uid="uid://doqfxl0w4x2gq"]
+[gd_scene load_steps=113 format=3 uid="uid://doqfxl0w4x2gq"]
 
 [ext_resource type="Script" path="res://scripts/color_texture.gd" id="1_0u8hc"]
 [ext_resource type="Texture2D" uid="uid://b8im78yp7irco" path="res://assets/electric-chair_342x588.png" id="1_11iuf"]
@@ -12,29 +12,31 @@
 [ext_resource type="Script" path="res://scripts/transitioner.gd" id="6_76mug"]
 [ext_resource type="PackedScene" uid="uid://drqy04ny5hijs" path="res://templates/speech_bubble.tscn" id="8_auad5"]
 [ext_resource type="LabelSettings" uid="uid://7n2mpeid6uy4" path="res://resources/two_minutes_hate_label_settings.tres" id="9_nliiy"]
+[ext_resource type="Texture2D" uid="uid://by2y2re6p7hnr" path="res://assets/winston.svg" id="11_65o7f"]
+[ext_resource type="PackedScene" uid="uid://bihuc7l11dwaf" path="res://templates/game_over.tscn" id="13_spad3"]
 
 [sub_resource type="Resource" id="Resource_2egsg"]
 script = ExtResource("2_5g8jf")
 answer = "2"
-result = 1
+result = 2
 comment = "Maybe one day"
 
 [sub_resource type="Resource" id="Resource_iyri4"]
 script = ExtResource("2_5g8jf")
 answer = "3"
-result = 1
+result = 2
 comment = "Nope"
 
 [sub_resource type="Resource" id="Resource_mp2hy"]
 script = ExtResource("2_5g8jf")
 answer = "4"
-result = 2
+result = 3
 comment = "Absolutely not"
 
 [sub_resource type="Resource" id="Resource_c0rc4"]
 script = ExtResource("2_5g8jf")
 answer = "5"
-result = 0
+result = 1
 comment = "Correct"
 
 [sub_resource type="Resource" id="Resource_xkqro"]
@@ -48,25 +50,25 @@ answer_d = SubResource("Resource_c0rc4")
 [sub_resource type="Resource" id="Resource_nn72k"]
 script = ExtResource("2_5g8jf")
 answer = "Yellow"
-result = 0
+result = 1
 comment = "Close enough"
 
 [sub_resource type="Resource" id="Resource_g0n2f"]
 script = ExtResource("2_5g8jf")
 answer = "Orange"
-result = 2
+result = 3
 comment = "The party disagrees"
 
 [sub_resource type="Resource" id="Resource_xxcut"]
 script = ExtResource("2_5g8jf")
 answer = "Red"
-result = 1
+result = 2
 comment = "This button is red"
 
 [sub_resource type="Resource" id="Resource_32x58"]
 script = ExtResource("2_5g8jf")
 answer = "Green"
-result = 1
+result = 2
 comment = "Not quite"
 
 [sub_resource type="Resource" id="Resource_s1q6g"]
@@ -80,25 +82,25 @@ answer_d = SubResource("Resource_32x58")
 [sub_resource type="Resource" id="Resource_tufj7"]
 script = ExtResource("2_5g8jf")
 answer = "Resign"
-result = 1
+result = 2
 comment = "The party never resigns"
 
 [sub_resource type="Resource" id="Resource_22ew4"]
 script = ExtResource("2_5g8jf")
 answer = "King to c6"
-result = 1
+result = 2
 comment = "That's not a legal move"
 
 [sub_resource type="Resource" id="Resource_7cpqu"]
 script = ExtResource("2_5g8jf")
 answer = "Bishop to c6"
-result = 2
+result = 3
 comment = "Incorrect"
 
 [sub_resource type="Resource" id="Resource_oktqc"]
 script = ExtResource("2_5g8jf")
-answer = "Black cannot win and has never won a game of chess"
-result = 0
+answer = "Black can never win"
+result = 1
 comment = "Very good"
 
 [sub_resource type="Resource" id="Resource_fgvys"]
@@ -701,13 +703,47 @@ tracks/2/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Chair")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.5, 1.9),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [&"talking", 1.0, false],
+"method": &"play"
+}, {
+"args": [],
+"method": &"stop"
+}]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Brian")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(3, 3.4),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [&"talking", 1.0, false],
+"method": &"play"
+}, {
+"args": [],
+"method": &"stop"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_gle27"]
 resource_name = "Asking"
 length = 5.0
 tracks/0/type = "value"
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/path = NodePath("Brian:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
@@ -729,10 +765,27 @@ tracks/1/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Brian")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [&"talking", 1.0, false],
+"method": &"play"
+}, {
+"args": [],
+"method": &"stop"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_2fnm1"]
 resource_name = "Death Shock"
-length = 5.0
+length = 10.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -768,6 +821,62 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/3/type = "animation"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GameOver/AnimationPlayer")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": PackedStringArray("[stop]", "fade"),
+"times": PackedFloat32Array(-0.1, 5)
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("GameOver:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Chair")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 4.9),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [&"shocking", 1.0, false],
+"method": &"play"
+}, {
+"args": [],
+"method": &"stop"
+}]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Brian")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 4.9),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [&"shocking", 1.0, false],
+"method": &"play"
+}, {
+"args": [],
+"method": &"stop"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_hihgh"]
@@ -856,6 +965,23 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [0, 4]
+}
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Brian")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 11.9),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [&"talking", 1.0, false],
+"method": &"play"
+}, {
+"args": [],
+"method": &"stop"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_8gs4f"]
@@ -1008,6 +1134,140 @@ tracks/9/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/10/type = "animation"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("GameOver/AnimationPlayer")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"clips": PackedStringArray("[stop]"),
+"times": PackedFloat32Array(0)
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("GameOver:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Brian/Release:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Brian/Release:process_mode")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Player:position")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 75)]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("Player:visible")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_ktjvd"]
+resource_name = "Release"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Brian/Release:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Brian/Release:process_mode")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Chair:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"empty"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Player:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(4, 4.5, 6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 75), Vector2(0, 75), Vector2(1200, 75)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Player:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_m1a53"]
 _data = {
@@ -1016,7 +1276,8 @@ _data = {
 "Death Shock": SubResource("Animation_2fnm1"),
 "Intro": SubResource("Animation_hihgh"),
 "Mini Shock": SubResource("Animation_8gs4f"),
-"RESET": SubResource("Animation_t72fp")
+"RESET": SubResource("Animation_t72fp"),
+"Release": SubResource("Animation_ktjvd")
 }
 
 [node name="ElectricChair" type="Node2D"]
@@ -1101,22 +1362,70 @@ text = "Good luck"
 width = 400
 target = NodePath("..")
 
+[node name="Template" parent="Brian" node_paths=PackedStringArray("target") instance=ExtResource("8_auad5")]
+process_mode = 4
+visible = false
+z_index = 2
+anchors_preset = 5
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_left = -237.5
+offset_top = -400.5
+offset_right = -237.5
+offset_bottom = -400.5
+grow_vertical = 1
+width = 400
+target = NodePath("..")
+
+[node name="Release" parent="Brian" node_paths=PackedStringArray("target") instance=ExtResource("8_auad5")]
+process_mode = 4
+visible = false
+z_index = 2
+anchors_preset = 5
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_left = -237.5
+offset_top = -400.5
+offset_right = -237.5
+offset_bottom = -400.5
+grow_vertical = 1
+text = "I'll let you go for now, don't cause any trouble..."
+width = 400
+target = NodePath("..")
+
 [node name="Chair" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_i35se")
 animation = &"occupied"
+
+[node name="Speech" parent="Chair" node_paths=PackedStringArray("target") instance=ExtResource("8_auad5")]
+process_mode = 4
+visible = false
+anchors_preset = 5
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_left = -191.5
+offset_top = -297.0
+offset_right = -191.5
+offset_bottom = -297.0
+grow_vertical = 1
+width = 500
+target = NodePath("..")
+
+[node name="Player" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, 75)
+texture = ExtResource("11_65o7f")
 
 [node name="Choices" type="Control" parent="."]
 modulate = Color(1, 1, 1, 0)
 z_index = 2
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = 9
 anchor_bottom = 1.0
 offset_left = -960.0
 offset_top = -540.0
 offset_right = 960.0
 offset_bottom = 540.0
-grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -1149,4 +1458,18 @@ libraries = {
 }
 autoplay = "Intro"
 
+[node name="GameOver" parent="." instance=ExtResource("13_spad3")]
+visible = false
+z_index = 10
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
+game_over_message = "The party disagrees"
+
+[node name="AnimationPlayer" parent="GameOver" index="4"]
+autoplay = ""
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+
+[editable path="GameOver"]

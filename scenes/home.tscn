@@ -195,6 +195,7 @@ color = Color(0.384314, 0.384314, 0.384314, 1)
 material = ExtResource("4_uke7e")
 position = Vector2(775, 0)
 script = ExtResource("3_hq68k")
+target_scene = "memory_hole"
 
 [node name="Garbage" type="Sprite2D" parent="Memory Hole"]
 position = Vector2(0, -615)

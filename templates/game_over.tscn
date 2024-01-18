@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bihuc7l11dwaf"]
+[gd_scene load_steps=9 format=3 uid="uid://bihuc7l11dwaf"]
 
 [ext_resource type="Script" path="res://scripts/game_over.gd" id="1_e5fm7"]
 [ext_resource type="PackedScene" uid="uid://chs8chdi5ghq" path="res://templates/telescreen.tscn" id="2_akjr1"]
+[ext_resource type="Script" path="res://scripts/restart.gd" id="3_vkusw"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_gvntk"]
 font_size = 120
@@ -28,13 +29,30 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_c1ip1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_m85p1"]
 _data = {
+"RESET": SubResource("Animation_c1ip1"),
 "fade": SubResource("Animation_j3d0e")
 }
 
 [node name="GameOver" type="Panel"]
 modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(1920, 1080)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -80,3 +98,21 @@ libraries = {
 "": SubResource("AnimationLibrary_m85p1")
 }
 autoplay = "fade"
+
+[node name="Restart" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -133.5
+offset_top = -280.0
+offset_right = 133.5
+offset_bottom = -194.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Restart"
+script = ExtResource("3_vkusw")
+
+[connection signal="pressed" from="Restart" to="Restart" method="_on_pressed"]

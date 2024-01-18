@@ -9,14 +9,14 @@ extends Resource
 @export var answer_c: QuizAnswer
 @export var answer_d: QuizAnswer
 
-func get_result(answer: String) -> QuizAnswer.AnswerResult:
+func get_result(answer: String) -> QuizAnswer:
     if answer == answer_a.answer:
-        return answer_a.result
+        return answer_a
     elif answer == answer_b.answer:
-        return answer_b.result
+        return answer_b
     elif answer == answer_c.answer:
-        return answer_c.result
+        return answer_c
     elif answer == answer_d.answer:
-        return answer_d.result
+        return answer_d
 
-    return QuizAnswer.AnswerResult.DEATH_SHOCK
+    return null

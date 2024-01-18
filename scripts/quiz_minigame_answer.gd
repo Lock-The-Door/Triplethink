@@ -2,10 +2,10 @@ class_name QuizAnswer
 extends Resource
 
 enum AnswerResult {
-    NONE,
-    CORRECT,
-    MINI_SHOCK,
-    DEATH_SHOCK
+	NONE,
+	CORRECT,
+	MINI_SHOCK,
+	DEATH_SHOCK
 }
 
 @export var answer: String

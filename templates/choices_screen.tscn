@@ -8,8 +8,8 @@ bg_color = Color(0.278991, 0.278991, 0.278991, 0.196078)
 [sub_resource type="LabelSettings" id="LabelSettings_cs78n"]
 font_size = 64
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_xnrbt"]
-size = Vector2(50, 50)
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_er7dx"]
+size = Vector2(300, 300)
 
 [node name="ChoicesScreen" type="Panel"]
 anchors_preset = 15
@@ -74,10 +74,12 @@ label_settings = SubResource("LabelSettings_cs78n")
 [node name="QuestionImage" type="TextureRect" parent="Question/VBoxContainer"]
 unique_name_in_owner = true
 visible = false
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = SubResource("PlaceholderTexture2D_xnrbt")
+texture = SubResource("PlaceholderTexture2D_er7dx")
+expand_mode = 5
 
 [connection signal="pressed" from="Choices/Option A" to="." method="_on_option_a_pressed"]
 [connection signal="pressed" from="Choices/Option B" to="." method="_on_option_b_pressed"]

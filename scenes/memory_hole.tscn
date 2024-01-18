@@ -1,0 +1,159 @@
+[gd_scene load_steps=10 format=3 uid="uid://jmcf5os4wley"]
+
+[ext_resource type="Texture2D" uid="uid://dj3xi5f5b2uqc" path="res://assets/memory_hole_pipe.svg" id="1_q5o21"]
+[ext_resource type="PackedScene" uid="uid://b7vvkrwnkx83e" path="res://templates/player.tscn" id="2_112uj"]
+[ext_resource type="Texture2D" uid="uid://b1jfbd5j672l7" path="res://assets/incinerator.svg" id="3_vyafb"]
+[ext_resource type="Texture2D" uid="uid://dscwo2l6n4kjm" path="res://assets/FireIcon.svg" id="4_bhhkq"]
+[ext_resource type="PackedScene" uid="uid://bihuc7l11dwaf" path="res://templates/game_over.tscn" id="5_y2oa4"]
+[ext_resource type="Script" path="res://scripts/transitioner.gd" id="6_khvye"]
+
+[sub_resource type="Animation" id="Animation_emhxk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-692, -726)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Player:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-3.14159]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_c7tm6"]
+resource_name = "die"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1, 1.2, 1.4, 1.6, 1.8, 2, 2.2, 2.4, 3.5, 4.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-692, -726), Vector2(-673.431, 268.06), Vector2(234.569, 252.06), Vector2(263.569, -46.9405), Vector2(-357.431, -46.9405), Vector2(-357.431, -382.94), Vector2(765.569, -382.94), Vector2(761.569, 754.06), Vector2(761.569, 754.06), Vector2(770.569, 2130.06)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Player:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1, 1.2, 1.4, 1.6, 1.8, 2, 2.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [-3.14159, 1.5708, 0.0, -1.5708, 0.0, 1.5708, 3.14159]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1, 3.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(0, 0), Vector2(760, 1740)]
+}
+tracks/3/type = "animation"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GameOver/AnimationPlayer")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": PackedStringArray("[stop]", "fade"),
+"times": PackedFloat32Array(0.9, 4.4)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nbol3"]
+_data = {
+"RESET": SubResource("Animation_emhxk"),
+"die": SubResource("Animation_c7tm6")
+}
+
+[node name="MemoryHole" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_q5o21")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("2_112uj")]
+process_mode = 4
+position = Vector2(-692, -726)
+rotation = -3.14159
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(759, 1921)
+texture = ExtResource("3_vyafb")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Sprite2D2"]
+position = Vector2(0, 250)
+amount = 100
+texture = ExtResource("4_bhhkq")
+emission_shape = 3
+emission_rect_extents = Vector2(1000, 1)
+spread = 180.0
+gravity = Vector2(0, -500)
+initial_velocity_max = 128.21
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_nbol3")
+}
+autoplay = "die"
+
+[node name="GameOver" parent="." instance=ExtResource("5_y2oa4")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -200.0
+offset_top = 1200.0
+offset_right = 1720.0
+offset_bottom = 2280.0
+grow_horizontal = 1
+grow_vertical = 1
+game_over_message = "Wrong kind of memory..."
+
+[node name="AnimationPlayer" parent="GameOver" index="4"]
+autoplay = ""
+
+[node name="Transitioner" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("6_khvye")
+
+[editable path="GameOver"]

@@ -16,7 +16,8 @@ signal answer_selected(answer: String)
 
 func _ready() -> void:
 	if question_texture != null:
-		$Question/Question/VBoxContainer/QuestionImage.texture = question_texture
+		$Question/VBoxContainer/QuestionImage.texture = question_texture
+		$Question/VBoxContainer/QuestionImage.visible = true	
 	$Question/VBoxContainer/QuestionLabel.text = question_text
 	if shuffle_options:
 		_options.shuffle()
